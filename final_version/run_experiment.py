@@ -16,8 +16,7 @@ def main():
                         choices=["agnews", "yelp", "imdb", "sst2", "mnli", "rte", "boolq", "yahoo"])
 
     parser.add_argument("-nt", "--num_test_examples", type=int, default=sys.maxsize, help="number of test examples")
-    parser.add_argument("-nu", "--num_unlabeled_examples", type=int, default=sys.maxsize,
-                        help="number of unlabeled examples")
+    parser.add_argument("-nu", "--num_unlabeled_examples", type=int, default=10000, help="number of unlabeled examples")
 
     parser.add_argument("-n", "--normalize", action="store_true", help="normalize the label distribution or not")
     parser.add_argument("-k", "--top_k", type=int, default=3,
