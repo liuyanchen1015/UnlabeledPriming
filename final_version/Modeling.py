@@ -73,14 +73,15 @@ class MaskedLMWrapper:
 
 def weight(similarity: float, confidence: float, weighting_option: str = 'sim'):
     if weighting_option == 'sim':
-        return similarity       # weighted only by similarity
+        return similarity  # weighted only by similarity
     elif weighting_option == 'uniform' or weighting_option == 'concat':
-        return 1                # uniform weighted
+        return 1  # uniform weighted
     elif weighting_option == 's+c':
         return similarity + confidence
     elif weighting_option == 'sc':
         return similarity * confidence
-    else: raise Exception("Not Implemented")
+    else:
+        raise Exception("Not Implemented")
 
 
 class PrimingModelWrapper:
@@ -119,7 +120,7 @@ class PrimingModelWrapper:
 
     def get_scores_batch(self, inputs: List[str], labels: List[str], max_batch_size: int = 1):
         result = []
-        for input_chunk in chunks(inputs, max_batch_size):
+        for input_chunk in tqdm(chunks(inputs, max_batch_size), total=len(inputs) // max_batch_size):
             logits = self.model.get_token_logits_batch(input_chunk).detach().cpu()
             result += [self.get_scores(example_logits, labels) for example_logits in logits]
         return result
@@ -196,7 +197,7 @@ class PrimingModelWrapper:
         princeton = False  # if use the sentence transformers from princeton nlp
         if embedder_name.startswith("princeton-nlp"):
             embedder = SimCSE(embedder_name)
-            embedder_name = embedder_name[embedder_name.index('/')+1:]
+            embedder_name = embedder_name[embedder_name.index('/') + 1:]
             princeton = True
         else:
             embedder = SentenceTransformer(embedder_name)
