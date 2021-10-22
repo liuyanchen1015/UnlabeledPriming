@@ -7,6 +7,7 @@ from InputExample import InputExample
 
 class Task(ABC):
     """Represents a task by providing access to its train/test/dev sets and methods for formatting examples."""
+
     def __init__(self, tokenizer: PreTrainedTokenizer):
         self.tokenizer = tokenizer
 
@@ -24,7 +25,6 @@ class Task(ABC):
 
 
 class AgNewsTask(Task):
-
     LABEL_MAP = {
         0: "World",
         1: "Sports",
@@ -33,13 +33,6 @@ class AgNewsTask(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         dataset = datasets.load_dataset("ag_news")
@@ -61,7 +54,6 @@ class AgNewsTask(Task):
 
 
 class YahooTask(Task):
-
     LABEL_MAP = {
         0: "Society",
         1: "Science",
@@ -76,13 +68,6 @@ class YahooTask(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         dataset = datasets.load_dataset("yahoo_answers_topics")
@@ -105,7 +90,6 @@ class YahooTask(Task):
 
 
 class YelpTask(Task):
-
     LABEL_MAP = {
         0: "terrible",
         1: "bad",
@@ -115,13 +99,6 @@ class YelpTask(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         dataset = datasets.load_dataset("yelp_review_full")
@@ -143,20 +120,12 @@ class YelpTask(Task):
 
 
 class IMDBTask(Task):
-
     LABEL_MAP = {
         0: "bad",
         1: "good",
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset) -> List[InputExample]:
         if subset == "train":
@@ -185,7 +154,6 @@ class IMDBTask(Task):
 
 
 class SST2Task(Task):
-
     LABEL_MAP = {
         0: "bad",
         1: "good",
@@ -197,13 +165,6 @@ class SST2Task(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset) -> List[InputExample]:
         dataset = datasets.load_dataset("glue", "sst2")
@@ -228,7 +189,6 @@ class SST2Task(Task):
 
 
 class MNLITask(Task):
-
     LABEL_MAP = {
         0: "Wrong",
         1: "Right",
@@ -242,13 +202,6 @@ class MNLITask(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         if subset == "train":
@@ -282,7 +235,6 @@ class MNLITask(Task):
 
 
 class RTETask(Task):
-
     LABEL_MAP = {
         0: "Wrong",
         1: "Right"
@@ -294,13 +246,6 @@ class RTETask(Task):
     }
 
     MAX_TOKENS_PER_EXAMPLE = 120
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 240)
-        # but in unweighted, 120 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         dataset = datasets.load_dataset("glue", "rte")
@@ -330,20 +275,12 @@ class RTETask(Task):
 
 
 class BoolQTask(Task):
-
     LABEL_MAP = {
         0: "false",
         1: "true",
     }
 
-    MAX_TOKENS_PER_EXAMPLE = 110
-
-    def __init__(self, tokenizer: PreTrainedTokenizer, weighted=True):
-        Task.__init__(self, tokenizer)
-        # in weighted setting, each example has maximum 240 tokens   (512/2 - len(prompt) ≈ 220)
-        # but in unweighted, 110 tokens
-        if weighted:
-            self.MAX_TOKENS_PER_EXAMPLE *= 2
+    MAX_TOKENS_PER_EXAMPLE = 120
 
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
         dataset = datasets.load_dataset("boolq")
@@ -361,12 +298,12 @@ class BoolQTask(Task):
     def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text_a = example['passage'].replace("\n", " ")
         text_a = self.tokenizer.encode(text_a, add_special_tokens=False)
-        text_a = text_a[:int(BoolQTask.MAX_TOKENS_PER_EXAMPLE * 3/4)]
+        text_a = text_a[:int(BoolQTask.MAX_TOKENS_PER_EXAMPLE * 3 / 4)]
         text_a = self.tokenizer.decode(text_a)
 
         text_b = example['question'].replace("\n", " ")
         text_b = self.tokenizer.encode(text_b, add_special_tokens=False)
-        text_b = text_b[:int(BoolQTask.MAX_TOKENS_PER_EXAMPLE * 1/4)]
+        text_b = text_b[:int(BoolQTask.MAX_TOKENS_PER_EXAMPLE * 1 / 4)]
         text_b = self.tokenizer.decode(text_b)
 
         return InputExample(text_a=text_a, text_b=text_b, label=BoolQTask.LABEL_MAP[example['answer']])
