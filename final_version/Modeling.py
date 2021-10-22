@@ -178,7 +178,7 @@ class PrimingModelWrapper:
 
             for result, score in results:
                 for k, v in result.items():
-                    avg_results[k].append(v * score.item())
+                    avg_results[k].append(v * score)
             avg_results = {k: sum(v) for k, v in avg_results.items()}
             all_avg_results.append(avg_results)
         return all_avg_results
