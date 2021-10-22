@@ -139,15 +139,6 @@ python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t
 python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t yahoo -k 3 -c 0 -p sim
 python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t yahoo -k 3 -c 0 -p sim
 python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t yahoo -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m roberta-large -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m bert-large-uncased -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -e multi-qa-mpnet-base-dot-v1 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-mpnet-base-dot-v1 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t rte -k 3 -c 0 -p sim
-python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t rte -k 3 -c 0 -p sim
 python run_experiment.py -n -m albert-xxlarge-v2 -t imdb -k 3 -c 0 -p sim
 python run_experiment.py -n -m roberta-large -t imdb -k 3 -c 0 -p sim
 python run_experiment.py -n -m bert-large-uncased -t imdb -k 3 -c 0 -p sim
@@ -164,9 +155,6 @@ python run_experiment.py -n -m bert-large-uncased -t agnews -k 0
 python run_experiment.py -n -m albert-xxlarge-v2 -t yahoo -k 0
 python run_experiment.py -n -m roberta-large -t yahoo -k 0
 python run_experiment.py -n -m bert-large-uncased -t yahoo -k 0
-python run_experiment.py -n -m albert-xxlarge-v2 -t rte -k 0
-python run_experiment.py -n -m roberta-large -t rte -k 0
-python run_experiment.py -n -m bert-large-uncased -t rte -k 0
 python run_experiment.py -n -m albert-xxlarge-v2 -t imdb -k 0
 python run_experiment.py -n -m roberta-large -t imdb -k 0
 python run_experiment.py -n -m bert-large-uncased -t imdb -k 0

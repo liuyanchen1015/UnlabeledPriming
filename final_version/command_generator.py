@@ -53,7 +53,7 @@ if __name__ == '__main__':
         k = 3
         c = 0
         priming_method = 'sim'
-        for task_name in ['agnews' , 'yahoo', 'rte', 'imdb']:
+        for task_name in ['agnews', 'yahoo', 'imdb']:
             embedder_name = 'paraphrase-MiniLM-L6-v2'
             for model_name in ['albert-xxlarge-v2', 'roberta-large', 'bert-large-uncased']:
                 f.write(construct_command(model_name, embedder_name, task_name, k, c, priming_method))
@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
         f.write("# without priming case (independent on the sentence transformer)\n")
         embedder_name = 'paraphrase-MiniLM-L6-v2'
-        for task_name in ['agnews', 'yahoo', 'rte', 'imdb']:
+        for task_name in ['agnews', 'yahoo', 'imdb']:
             for model_name in ['albert-xxlarge-v2', 'roberta-large', 'bert-large-uncased']:
                 f.write(construct_command(model_name, embedder_name, task_name, 0, 0, 0))
 
