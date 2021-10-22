@@ -25,6 +25,8 @@ def main():
     parser.add_argument("-p", "--priming_method", type=str, default="uniform", help="the method used for priming",
                         choices=["concat", "uniform", "sim", "s+c", "sc"])
 
+    parser.add_argument("--batch_size", type=int, default=1, help="The batch size to use for evaluation.")
+
     args = parser.parse_args()
     model_name = args.model_name
     model = MaskedLMWrapper(model_name)
@@ -54,7 +56,7 @@ def main():
         task = Task.BoolQTask(tokenizer=model.tokenizer, weighted=weighted)
     elif task_name == "yahoo":
         task = Task.YahooTask(tokenizer=model.tokenizer, weighted=weighted)
-    priming_model_wrapper = PrimingModelWrapper(model, task)
+    priming_model_wrapper = PrimingModelWrapper(model, task, args.batch_size)
 
     num_test_examples = args.num_test_examples
     num_unlabeled_examples = args.num_unlabeled_examples

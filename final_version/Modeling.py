@@ -85,9 +85,10 @@ def weight(similarity: float, confidence: float, weighting_option: str = 'sim'):
 
 
 class PrimingModelWrapper:
-    def __init__(self, model: MaskedLMWrapper, task: Task):
+    def __init__(self, model: MaskedLMWrapper, task: Task, batch_size: int = 1):
         self.model = model
         self.task = task
+        self.batch_size = batch_size
 
     def create_priming_prefix(self, example: InputExample, priming_examples: List[InputExample],
                               example_separator: str = "\n\n") -> str:
@@ -118,9 +119,9 @@ class PrimingModelWrapper:
             result.append({k: v / score_sum for k, v in normalized_scores.items()})
         return result
 
-    def get_scores_batch(self, inputs: List[str], labels: List[str], max_batch_size: int = 1):
+    def get_scores_batch(self, inputs: List[str], labels: List[str]):
         result = []
-        for input_chunk in tqdm(chunks(inputs, max_batch_size), total=len(inputs) // max_batch_size):
+        for input_chunk in tqdm(chunks(inputs, self.batch_size), total=len(inputs) // self.batch_size):
             logits = self.model.get_token_logits_batch(input_chunk).detach().cpu()
             result += [self.get_scores(example_logits, labels) for example_logits in logits]
         return result
