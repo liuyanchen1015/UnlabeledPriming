@@ -1,0 +1,172 @@
+# main experiments
+python run_experiment.py -n -t agnews -k 0
+python run_experiment.py -n -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -t agnews -k 3 -c 0 -p uniform
+python run_experiment.py -n -t agnews -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t agnews -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t agnews -k 10 -c 0 -p sim
+python run_experiment.py -n -t agnews -k 10 -c 0 -p uniform
+python run_experiment.py -n -t agnews -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t agnews -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t agnews -k 50 -c 0 -p sim
+python run_experiment.py -n -t agnews -k 50 -c 0 -p uniform
+python run_experiment.py -n -t agnews -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t agnews -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t agnews -k 3 -c 0 -p concat
+python run_experiment.py -n -t agnews -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t imdb -k 0
+python run_experiment.py -n -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -t imdb -k 3 -c 0 -p uniform
+python run_experiment.py -n -t imdb -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t imdb -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t imdb -k 10 -c 0 -p sim
+python run_experiment.py -n -t imdb -k 10 -c 0 -p uniform
+python run_experiment.py -n -t imdb -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t imdb -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t imdb -k 50 -c 0 -p sim
+python run_experiment.py -n -t imdb -k 50 -c 0 -p uniform
+python run_experiment.py -n -t imdb -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t imdb -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t imdb -k 3 -c 0 -p concat
+python run_experiment.py -n -t imdb -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t sst2 -k 0
+python run_experiment.py -n -t sst2 -k 3 -c 0 -p sim
+python run_experiment.py -n -t sst2 -k 3 -c 0 -p uniform
+python run_experiment.py -n -t sst2 -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t sst2 -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t sst2 -k 10 -c 0 -p sim
+python run_experiment.py -n -t sst2 -k 10 -c 0 -p uniform
+python run_experiment.py -n -t sst2 -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t sst2 -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t sst2 -k 50 -c 0 -p sim
+python run_experiment.py -n -t sst2 -k 50 -c 0 -p uniform
+python run_experiment.py -n -t sst2 -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t sst2 -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t sst2 -k 3 -c 0 -p concat
+python run_experiment.py -n -t sst2 -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t yahoo -k 0
+python run_experiment.py -n -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -t yahoo -k 3 -c 0 -p uniform
+python run_experiment.py -n -t yahoo -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t yahoo -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t yahoo -k 10 -c 0 -p sim
+python run_experiment.py -n -t yahoo -k 10 -c 0 -p uniform
+python run_experiment.py -n -t yahoo -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t yahoo -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t yahoo -k 50 -c 0 -p sim
+python run_experiment.py -n -t yahoo -k 50 -c 0 -p uniform
+python run_experiment.py -n -t yahoo -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t yahoo -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t yahoo -k 3 -c 0 -p concat
+python run_experiment.py -n -t yahoo -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t yelp -k 0
+python run_experiment.py -n -t yelp -k 3 -c 0 -p sim
+python run_experiment.py -n -t yelp -k 3 -c 0 -p uniform
+python run_experiment.py -n -t yelp -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t yelp -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t yelp -k 10 -c 0 -p sim
+python run_experiment.py -n -t yelp -k 10 -c 0 -p uniform
+python run_experiment.py -n -t yelp -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t yelp -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t yelp -k 50 -c 0 -p sim
+python run_experiment.py -n -t yelp -k 50 -c 0 -p uniform
+python run_experiment.py -n -t yelp -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t yelp -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t yelp -k 3 -c 0 -p concat
+python run_experiment.py -n -t yelp -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t rte -k 0
+python run_experiment.py -n -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -t rte -k 3 -c 0 -p uniform
+python run_experiment.py -n -t rte -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t rte -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t rte -k 10 -c 0 -p sim
+python run_experiment.py -n -t rte -k 10 -c 0 -p uniform
+python run_experiment.py -n -t rte -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t rte -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t rte -k 50 -c 0 -p sim
+python run_experiment.py -n -t rte -k 50 -c 0 -p uniform
+python run_experiment.py -n -t rte -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t rte -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t rte -k 3 -c 0 -p concat
+python run_experiment.py -n -t rte -k 3 -c 0.8 -p concat
+python run_experiment.py -n -t boolq -k 0
+python run_experiment.py -n -t boolq -k 3 -c 0 -p sim
+python run_experiment.py -n -t boolq -k 3 -c 0 -p uniform
+python run_experiment.py -n -t boolq -k 3 -c 0.8 -p sim
+python run_experiment.py -n -t boolq -k 3 -c 0.8 -p uniform
+python run_experiment.py -n -t boolq -k 10 -c 0 -p sim
+python run_experiment.py -n -t boolq -k 10 -c 0 -p uniform
+python run_experiment.py -n -t boolq -k 10 -c 0.8 -p sim
+python run_experiment.py -n -t boolq -k 10 -c 0.8 -p uniform
+python run_experiment.py -n -t boolq -k 50 -c 0 -p sim
+python run_experiment.py -n -t boolq -k 50 -c 0 -p uniform
+python run_experiment.py -n -t boolq -k 50 -c 0.8 -p sim
+python run_experiment.py -n -t boolq -k 50 -c 0.8 -p uniform
+python run_experiment.py -n -t boolq -k 3 -c 0 -p concat
+python run_experiment.py -n -t boolq -k 3 -c 0.8 -p concat
+
+# experiments about priming method
+python run_experiment.py -n -t agnews -k 3 -c 0 -p s+c
+python run_experiment.py -n -t agnews -k 3 -c 0 -p sc
+python run_experiment.py -n -t agnews -k 10 -c 0 -p s+c
+python run_experiment.py -n -t agnews -k 10 -c 0 -p sc
+python run_experiment.py -n -t agnews -k 50 -c 0 -p s+c
+python run_experiment.py -n -t agnews -k 50 -c 0 -p sc
+
+# experiments about confidence threshold
+python run_experiment.py -n -t agnews -k 3 -c 0.75 -p sim
+python run_experiment.py -n -t agnews -k 3 -c 0.85 -p sim
+python run_experiment.py -n -t agnews -k 10 -c 0.75 -p sim
+python run_experiment.py -n -t agnews -k 10 -c 0.85 -p sim
+
+# experiments about underlying LM and Sentence Transformer
+# priming case: in setting k=3, c=0, similarity weighted
+python run_experiment.py -n -m albert-xxlarge-v2 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m roberta-large -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m bert-large-uncased -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -e multi-qa-mpnet-base-dot-v1 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-mpnet-base-dot-v1 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t agnews -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m roberta-large -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m bert-large-uncased -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -e multi-qa-mpnet-base-dot-v1 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-mpnet-base-dot-v1 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t yahoo -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m roberta-large -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m bert-large-uncased -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -e multi-qa-mpnet-base-dot-v1 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-mpnet-base-dot-v1 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t rte -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m roberta-large -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m bert-large-uncased -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -e multi-qa-mpnet-base-dot-v1 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-mpnet-base-dot-v1 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e multi-qa-MiniLM-L6-cos-v1 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e all-mpnet-base-v2 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e msmarco-bert-base-dot-v5 -t imdb -k 3 -c 0 -p sim
+python run_experiment.py -n -m albert-xxlarge-v2 -e princeton-nlp/unsup-simcse-roberta-large -t imdb -k 3 -c 0 -p sim
+# without priming case (independent on the sentence transformer)
+python run_experiment.py -n -m albert-xxlarge-v2 -t agnews -k 0
+python run_experiment.py -n -m roberta-large -t agnews -k 0
+python run_experiment.py -n -m bert-large-uncased -t agnews -k 0
+python run_experiment.py -n -m albert-xxlarge-v2 -t yahoo -k 0
+python run_experiment.py -n -m roberta-large -t yahoo -k 0
+python run_experiment.py -n -m bert-large-uncased -t yahoo -k 0
+python run_experiment.py -n -m albert-xxlarge-v2 -t rte -k 0
+python run_experiment.py -n -m roberta-large -t rte -k 0
+python run_experiment.py -n -m bert-large-uncased -t rte -k 0
+python run_experiment.py -n -m albert-xxlarge-v2 -t imdb -k 0
+python run_experiment.py -n -m roberta-large -t imdb -k 0
+python run_experiment.py -n -m bert-large-uncased -t imdb -k 0
