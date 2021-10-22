@@ -41,21 +41,21 @@ def main():
 
     task_name = args.task_name
     if task_name == "agnews":
-        task = Task.AgNewsTask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.AgNewsTask(tokenizer=model.tokenizer)
     elif task_name == "yelp":
-        task = Task.YelpTask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.YelpTask(tokenizer=model.tokenizer)
     elif task_name == "imdb":
-        task = Task.IMDBTask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.IMDBTask(tokenizer=model.tokenizer)
     elif task_name == "sst2":
-        task = Task.SST2Task(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.SST2Task(tokenizer=model.tokenizer)
     elif task_name == "mnli":
-        task = Task.MNLITask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.MNLITask(tokenizer=model.tokenizer)
     elif task_name == "rte":
-        task = Task.RTETask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.RTETask(tokenizer=model.tokenizer)
     elif task_name == "boolq":
-        task = Task.BoolQTask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.BoolQTask(tokenizer=model.tokenizer)
     elif task_name == "yahoo":
-        task = Task.YahooTask(tokenizer=model.tokenizer, weighted=weighted)
+        task = Task.YahooTask(tokenizer=model.tokenizer)
     priming_model_wrapper = PrimingModelWrapper(model, task, args.batch_size)
 
     num_test_examples = args.num_test_examples
