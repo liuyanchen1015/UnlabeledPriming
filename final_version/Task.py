@@ -159,15 +159,12 @@ class SST2Task(Task):
         1: "good",
     }
 
-    Label_Map_Test = {
-        -1: "bad",
-        1: "good"
-    }
-
     MAX_TOKENS_PER_EXAMPLE = 120
 
     def load_dataset(self, subset) -> List[InputExample]:
         dataset = datasets.load_dataset("glue", "sst2")
+        if subset == 'test':
+            subset = 'validation'
         examples = [self._convert_example(example, subset) for example in dataset[subset]]
         return examples
 
@@ -182,10 +179,7 @@ class SST2Task(Task):
         text_a = self.tokenizer.encode(text_a, add_special_tokens=False)
         text_a = text_a[:SST2Task.MAX_TOKENS_PER_EXAMPLE]
         text_a = self.tokenizer.decode(text_a)
-        if subset == "train":
-            return InputExample(text_a=text_a, label=SST2Task.LABEL_MAP[example['label']])
-        else:
-            return InputExample(text_a=text_a, label=SST2Task.Label_Map_Test[example['label']])
+        return InputExample(text_a=text_a, label=SST2Task.LABEL_MAP[example['label']])
 
 
 class MNLITask(Task):
