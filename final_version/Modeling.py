@@ -208,7 +208,8 @@ class PrimingModelWrapper:
                                                show_progress_bar=True)
 
         print("Predicting for the unlabeled examples:")
-        file_name = 'data/' + task_name + '/' + model_name + '/' + embedder_name + '/' + str(len(ds_train)) + '.pt'
+        file_name = 'data/' + task_name + '/' + model_name + '/' + embedder_name + '/' + \
+                    str(num_iteration) + "iteration_" + str(len(ds_train)) + '.pt'
         os.makedirs(os.path.dirname(file_name), exist_ok=True)
         if os.path.exists(file_name):
             print("Loading the saved file...")
