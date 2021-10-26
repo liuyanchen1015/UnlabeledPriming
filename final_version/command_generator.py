@@ -20,7 +20,7 @@ if __name__ == '__main__':
         f.write("# main experiments\n")
         model_name = 'albert-xlarge-v2'
         embedder_name = 'paraphrase-MiniLM-L6-v2'
-        for task_name in ["agnews", "imdb", "sst2", "yahoo", "yelp", "rte", "boolq"]:
+        for task_name in ["agnews", "imdb", "sst2", "yahoo", "yelp", "boolq"]:
             f.write(construct_command(model_name, embedder_name, task_name, 0, 0, 0)) # unlabeled priming
             for k in [3, 10, 50]:
                 for c in [0, 0.8]:
