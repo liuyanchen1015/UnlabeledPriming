@@ -21,6 +21,8 @@ def main():
     parser.add_argument("-n", "--normalize", action="store_true", help="normalize the label distribution or not")
     parser.add_argument("-k", "--top_k", type=int, default=3,
                         help="the number of neighbors used for priming, 0 means without priming")
+    parser.add_argument("-i", "--num_iteration", type=int, default=3,
+                        help="the iteration times of prediction for the unlabeled examples")
     parser.add_argument("-c", "--confidence_threshold", type=float, default=0, help="the confidence threshold")
     parser.add_argument("-p", "--priming_method", type=str, default="uniform", help="the method used for priming",
                         choices=["concat", "uniform", "sim", "s+c", "sc"])
@@ -33,6 +35,7 @@ def main():
     embedder_name = args.embedder_name
     priming_method = args.priming_method
     top_k = args.top_k
+    num_iteration = args.num_iteration
 
     if priming_method == 'concat':
         weighted = False  # concat all the neighbor examples and prime at once
@@ -76,12 +79,13 @@ def main():
     ds_train = ds_train[:num_unlabeled_examples]
     ds_test = ds_test[:num_test_examples]
 
-    all_example_scores = priming_model_wrapper.inference(ds_test, ds_train,
-                                                         task_name=task_name,
-                                                         model_name=model_name, embedder_name=embedder_name,
-                                                         normalize=normalize, top_k=top_k,
-                                                         priming_method=priming_method,
-                                                         confidence_threshold=confidence_threshold)
+    all_example_scores = priming_model_wrapper.unlabeled_priming(ds_test, ds_train,
+                                                                 task_name=task_name,
+                                                                 model_name=model_name, embedder_name=embedder_name,
+                                                                 normalize=normalize, top_k=top_k,
+                                                                 num_iteration=num_iteration,
+                                                                 priming_method=priming_method,
+                                                                 confidence_threshold=confidence_threshold)
 
     test_result = TestResult(num_labels=len(task.get_labels()))
     for idx, example_scores in enumerate(all_example_scores):
@@ -113,7 +117,7 @@ def main():
             f.write(f"priming=False\n")
         else:  # priming
             f.write(f"priming_method={priming_method}\n" +
-                    f"num_neighbors={top_k} confidence_threshold={confidence_threshold}\n")
+                    f"num_neighbors={top_k} num_iteration={num_iteration} confidence_threshold={confidence_threshold}\n")
         f.write(f"Result: Acc={test_result.acc()} | LD={test_result.label_distribution()}")
 
     print(f"Result: Acc={test_result.acc()} | LD={test_result.label_distribution()}")

@@ -20,17 +20,6 @@ def chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
-
-def save_data(file_name, datas):
-    with open(file_name, 'w') as f:
-        f.write(json.dumps(datas))
-
-
-def load_data(file_name):
-    with open(file_name) as f:
-        return json.load(f)
-
-
 class TestResult:
     def __init__(self, scores: Optional[np.ndarray] = None, labels: Optional[np.ndarray] = None,
                  num_labels: Optional[int] = None):
@@ -191,9 +180,9 @@ class PrimingModelWrapper:
 
         return result
 
-    def inference(self, ds_test, ds_train,
-                  task_name, model_name="albert-xlarge-v2", embedder_name="paraphrase-MiniLM-L6-v2",
-                  normalize=True, top_k=3, priming_method="uniform", confidence_threshold=0):
+    def unlabeled_priming(self, ds_test, ds_train,
+                          task_name, model_name="albert-xlarge-v2", embedder_name="paraphrase-MiniLM-L6-v2",
+                          normalize=True, top_k=3, num_iteration=3, priming_method="uniform", confidence_threshold=0):
 
         princeton = False  # if use the sentence transformers from princeton nlp
         if embedder_name.startswith("princeton-nlp"):
@@ -210,18 +199,35 @@ class PrimingModelWrapper:
         print(f"task_name={task_name}\n" +
               f"model_name={model_name} embedder_name={embedder_name}\n" +
               f"normalize={normalize} priming_method={priming_method}\n" +
-              f"num_neighbors={top_k} confidence_threshold={confidence_threshold}\n")
+              f"num_neighbors={top_k} num_iteration={num_iteration} confidence_threshold={confidence_threshold}\n")
+
+        if princeton:
+            train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train])
+        else:
+            train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train], convert_to_tensor=True,
+                                               show_progress_bar=True)
 
         print("Predicting for the unlabeled examples:")
         file_name = 'data/' + task_name + '/' + model_name + '/' + embedder_name + '/' + str(len(ds_train)) + '.jsonl'
         os.makedirs(os.path.dirname(file_name), exist_ok=True)
         if os.path.exists(file_name):
             print("Loading the saved file...")
-            unlabeled_examples_class_dist = load_data(file_name)
+            unlabeled_examples_class_dist = torch.load(file_name)
             print("Successfully loaded.")
         else:
             unlabeled_examples_class_dist = self.classify(ds_train, None, normalize=normalize)
-            save_data(file_name, unlabeled_examples_class_dist)
+            # iteratively using unlabeled priming to improve the predictions for unlabeled examples
+            for i in range(num_iteration):
+                print(f"{i + 1}th iteration:\n")
+                ds_train = [InputExample(example.text_a, example.text_b, max(unlabeled_examples_class_dist[idx],
+                                                                             key=unlabeled_examples_class_dist[idx].get))
+                            for idx, example in enumerate(tqdm(ds_train))]
+                unlabeled_examples_class_dist = self.inference(ds_train, ds_train, unlabeled_examples_class_dist,
+                                                               train_embeddings=train_embeddings,
+                                                               embedder=embedder, princeton=princeton,
+                                                               normalize=normalize, top_k=top_k,
+                                                               priming_method=priming_method)
+            torch.save(unlabeled_examples_class_dist, file_name)
 
         # optionally filter out unconfident examples
         if confidence_threshold > 0:
@@ -229,16 +235,28 @@ class PrimingModelWrapper:
                                                                          key=unlabeled_examples_class_dist[idx].get))
                         for idx, example in enumerate(tqdm(ds_train))
                         if max(unlabeled_examples_class_dist[idx].values()) >= confidence_threshold]
+            train_embeddings = None
         else:
             ds_train = [InputExample(example.text_a, example.text_b, max(unlabeled_examples_class_dist[idx],
                                                                          key=unlabeled_examples_class_dist[idx].get))
                         for idx, example in enumerate(tqdm(ds_train))]
 
-        if princeton:
-            train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train])
-        else:
-            train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train], convert_to_tensor=True,
-                                               show_progress_bar=True)
+        return self.inference(ds_test, ds_train, unlabeled_examples_class_dist,
+                              train_embeddings=train_embeddings,
+                              embedder=embedder, princeton=princeton,
+                              normalize=normalize, top_k=top_k, priming_method=priming_method)
+
+    def inference(self, ds_test, ds_train, unlabeled_examples_class_dist, train_embeddings,
+                  embedder, princeton: bool,
+                  normalize=True, top_k=3, priming_method="uniform"):
+
+        if train_embeddings is None:
+            if princeton:
+                train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train])
+            else:
+                train_embeddings = embedder.encode([x.text_a + " " + x.text_b for x in ds_train],
+                                                   convert_to_tensor=True,
+                                                   show_progress_bar=True)
 
         print("Preparing the neighbors for the input examples:")
         top_k = min(top_k, len(ds_train))
