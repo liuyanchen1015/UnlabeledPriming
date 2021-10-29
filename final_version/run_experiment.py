@@ -28,6 +28,7 @@ def main():
                         choices=["concat", "uniform", "sim", "s+c", "sc"])
 
     parser.add_argument("--batch_size", type=int, default=1, help="The batch size to use for evaluation.")
+    parser.add_argument("--add_fullstop", action='store_true')
 
     args = parser.parse_args()
     model_name = args.model_name
@@ -59,6 +60,8 @@ def main():
         task = Task.BoolQTask(tokenizer=model.tokenizer)
     elif task_name == "yahoo":
         task = Task.YahooTask(tokenizer=model.tokenizer)
+
+    task.add_fullstop = args.add_fullstop
     priming_model_wrapper = PrimingModelWrapper(model, task, args.batch_size)
 
     num_test_examples = args.num_test_examples

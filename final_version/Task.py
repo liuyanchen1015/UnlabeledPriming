@@ -10,6 +10,7 @@ class Task(ABC):
 
     def __init__(self, tokenizer: PreTrainedTokenizer):
         self.tokenizer = tokenizer
+        self.add_fullstop = False
 
     @abstractmethod
     def load_dataset(self, subset: str = "train") -> List[InputExample]:
@@ -43,7 +44,7 @@ class AgNewsTask(Task):
         return [AgNewsTask.LABEL_MAP[idx] for idx in sorted(AgNewsTask.LABEL_MAP.keys())]
 
     def format_example(self, example: InputExample, label_str: str) -> str:
-        return f"{example.text_a}\nNews Category:{label_str}"
+        return f"{example.text_a}\nNews Category:{label_str}{'.' if self.add_fullstop else ''}"
 
     def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text_a = example['text'].replace("\n", " ").replace("<br />", " ")
@@ -78,7 +79,7 @@ class YahooTask(Task):
         return [YahooTask.LABEL_MAP[idx] for idx in sorted(YahooTask.LABEL_MAP.keys())]
 
     def format_example(self, example: InputExample, label_str: str) -> str:
-        return f"{example.text_a}\nNews Category:{label_str}"
+        return f"{example.text_a}\nNews Category:{label_str}{'.' if self.add_fullstop else ''}"
 
     def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text = example['question_title'] + ' ' + example['question_content'] + ' ' + example['best_answer']
@@ -109,7 +110,7 @@ class YelpTask(Task):
         return [YelpTask.LABEL_MAP[idx] for idx in sorted(YelpTask.LABEL_MAP.keys())]
 
     def format_example(self, example: InputExample, label_str: str) -> str:
-        return f"{example.text_a}\nIn summary, the restaurant is{label_str}"
+        return f"{example.text_a}\nIn summary, the restaurant is{label_str}{'.' if self.add_fullstop else ''}"
 
     def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text_a = example['text'].replace("\n", " ").replace("<br />", " ")
@@ -140,7 +141,7 @@ class IMDBTask(Task):
         return [IMDBTask.LABEL_MAP[idx] for idx in sorted(IMDBTask.LABEL_MAP.keys())]
 
     def format_example(self, example: InputExample, label_str: str) -> str:
-        return f"{example.text_a}\nThe movie is{label_str}"
+        return f"{example.text_a}\nThe movie is{label_str}{'.' if self.add_fullstop else ''}"
 
     def _convert_example(self, example: Dict[str, Any], subset) -> InputExample:
         if subset == 'train':
@@ -165,7 +166,7 @@ class SST2Task(Task):
         dataset = datasets.load_dataset("glue", "sst2")
         if subset == 'test':
             subset = 'validation'
-        examples = [self._convert_example(example, subset) for example in dataset[subset]]
+        examples = [self._convert_example(example) for example in dataset[subset]]
         return examples
 
     def get_labels(self) -> List[str]:
@@ -174,7 +175,7 @@ class SST2Task(Task):
     def format_example(self, example: InputExample, label_str: str) -> str:
         return f"{example.text_a}\nThe movie is{label_str}"
 
-    def _convert_example(self, example: Dict[str, Any], subset) -> InputExample:
+    def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text_a = example['sentence']
         text_a = self.tokenizer.encode(text_a, add_special_tokens=False)
         text_a = text_a[:SST2Task.MAX_TOKENS_PER_EXAMPLE]
