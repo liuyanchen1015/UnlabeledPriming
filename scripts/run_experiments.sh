@@ -12,3 +12,9 @@ python run_experiment.py -n -t "${TASK}" -k 3 -c 0 -p uniform --batch_size 4 -nt
 python run_experiment.py -n -t "${TASK}" -k 10 -c 0 -p uniform --batch_size 4 -nt 10000 -nu 10000
 python run_experiment.py -n -t "${TASK}" -k 50 -c 0 -p uniform --batch_size 4 -nt 10000 -nu 10000
 python run_experiment.py -n -t "${TASK}" -k 3 -c 0 -p concat --batch_size 4 -nt 10000 -nu 10000
+
+python run_experiment.py -n -t "${TASK}" -k 0 --batch_size 4 -nt 10000 -nu 10000 --add_fullstop
+python run_experiment.py -n -t "${TASK}" -k 3 -c 0 -p uniform --batch_size 4 -nt 10000 -nu 10000 --add_fullstop
+python run_experiment.py -n -t "${TASK}" -k 10 -c 0 -p uniform --batch_size 4 -nt 10000 -nu 10000 --add_fullstop
+python run_experiment.py -n -t "${TASK}" -k 50 -c 0 -p uniform --batch_size 4 -nt 10000 -nu 10000 --add_fullstop
+python run_experiment.py -n -t "${TASK}" -k 3 -c 0 -p concat --batch_size 4 -nt 10000 -nu 10000 --add_fullstop
