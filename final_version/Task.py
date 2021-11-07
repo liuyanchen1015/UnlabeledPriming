@@ -78,7 +78,7 @@ class YahooTask(Task):
         return [YahooTask.LABEL_MAP[idx] for idx in sorted(YahooTask.LABEL_MAP.keys())]
 
     def format_example(self, example: InputExample, label_str: str) -> str:
-        return f"{example.text_a}\nNews Category:{label_str}"
+        return f"{example.text_a}\nQuestion Category:{label_str}"
 
     def _convert_example(self, example: Dict[str, Any]) -> InputExample:
         text = example['question_title'] + ' ' + example['question_content'] + ' ' + example['best_answer']
