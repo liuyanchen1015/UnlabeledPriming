@@ -25,7 +25,7 @@ def main():
                         help="the iteration times of prediction for the unlabeled examples")
     parser.add_argument("-c", "--confidence_threshold", type=float, default=0, help="the confidence threshold")
     parser.add_argument("-p", "--priming_method", type=str, default="uniform", help="the method used for priming",
-                        choices=["concat", "uniform", "sim", "s+c", "sc"])
+                        choices=["concat", "uniform", "sim", "s+c", "sc", "c"])
 
     parser.add_argument("--batch_size", type=int, default=1, help="The batch size to use for evaluation.")
 

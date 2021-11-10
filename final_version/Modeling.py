@@ -67,6 +67,8 @@ def weight(similarity: float, confidence: float, weighting_option: str = 'sim'):
         return 1  # uniform weighted
     elif weighting_option == 's+c':
         return similarity + confidence
+    elif weighting_option == 'c':
+        return confidence
     elif weighting_option == 'sc':
         return similarity * confidence
     else:
