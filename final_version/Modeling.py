@@ -1,6 +1,6 @@
-from collections import Counter
-from typing import List, Optional, Dict, Tuple
-from collections import defaultdict
+from collections import Counter, defaultdict
+from math import ceil
+from typing import Dict, List, Optional, Tuple
 
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForMaskedLM
@@ -33,6 +33,8 @@ class TestResult:
         self.predictions = np.concatenate([self.predictions, np.argmax(scores, axis=-1)])
 
     def acc(self) -> float:
+        if len(self.labels) == 0:
+            return 0.0
         return (self.labels == self.predictions).sum() / len(self.labels)
 
     def label_distribution(self) -> Dict[int, int]:
@@ -112,7 +114,8 @@ class PrimingModelWrapper:
 
     def get_scores_batch(self, inputs: List[str], labels: List[str]):
         result = []
-        for input_chunk in tqdm(chunks(inputs, self.batch_size), total=len(inputs) // self.batch_size):
+        total_batches = ceil(len(inputs) / self.batch_size) if inputs else 0
+        for input_chunk in tqdm(chunks(inputs, self.batch_size), total=total_batches):
             logits = self.model.get_token_logits_batch(input_chunk).detach().cpu()
             result += [self.get_scores(example_logits, labels) for example_logits in logits]
         return result
