@@ -128,11 +128,26 @@ final_version/results/<task>/<mlm>/<embedder>/...
 If this repository or the method is useful in your work, please cite the paper:
 
 ```bibtex
-@article{chen2022unlabeled,
-  title={Unlabeled Data Improves Zero-shot Text Classification with Prompts},
-  author={Chen, Xiang and others},
-  journal={arXiv preprint arXiv:2202.06133},
-  year={2022}
+@inproceedings{liu-etal-2023-semantic,
+    title = "Semantic-Oriented Unlabeled Priming for Large-Scale Language Models",
+    author = "Liu, Yanchen  and
+      Schick, Timo  and
+      Schtze, Hinrich",
+    editor = "Sadat Moosavi, Nafise  and
+      Gurevych, Iryna  and
+      Hou, Yufang  and
+      Kim, Gyuwan  and
+      Kim, Young Jin  and
+      Schuster, Tal  and
+      Agrawal, Ameeta",
+    booktitle = "Proceedings of the Fourth Workshop on Simple and Efficient Natural Language Processing (SustaiNLP)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada (Hybrid)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.sustainlp-1.2/",
+    doi = "10.18653/v1/2023.sustainlp-1.2",
+    pages = "32--38"
 }
 ```
 
