@@ -1,8 +1,8 @@
-# Unlabeled Priming for Zero-shot Text Classification
+# Semantic-Oriented Unlabeled Priming for Large-Scale Language Models
 
 Official (restructured) codebase for reproducing and extending the method in:
 
-> **Unlabeled Data Improves Zero-shot Text Classification with Prompts**  
+> **Semantic-Oriented Unlabeled Priming for Large-Scale Language Models**  
 > arXiv:2202.06133  
 > https://arxiv.org/abs/2202.06133
 
